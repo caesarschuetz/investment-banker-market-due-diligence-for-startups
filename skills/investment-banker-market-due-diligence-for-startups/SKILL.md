@@ -222,7 +222,7 @@ Writing rules:
 
 ## Export to PDF
 
-If `scripts/build_pdf.py` is available next to this file, run:
+The PDF is built by `scripts/build_pdf.py`. When the skill was installed as a folder, the script sits next to this file:
 
 ```bash
 python <skill-folder>/scripts/build_pdf.py dd-<idea-slug>/report.md
@@ -230,7 +230,14 @@ python <skill-folder>/scripts/build_pdf.py dd-<idea-slug>/report.md
 
 It writes `report.pdf` beside the Markdown file and tries Playwright with Chromium, a system Chrome or Chromium, wkhtmltopdf and pandoc in that order. Open the PDF or render a page to check that tables fit the page width before you deliver it.
 
-If the script is not available, convert with whatever the environment offers: pandoc, a headless browser printing an HTML render of the Markdown, or a document tool. If nothing works, deliver the Markdown and say that the PDF could not be built.
+If you only have this file, the script is not there. Fetch the skill's public repository, which contains it, and tell the user that you did:
+
+```bash
+git clone --depth 1 https://github.com/caesarschuetz/investment-banker-market-due-diligence-for-startups.git ib-dd-skill
+python ib-dd-skill/skills/investment-banker-market-due-diligence-for-startups/scripts/build_pdf.py dd-<idea-slug>/report.md
+```
+
+If the repository cannot be reached, convert with whatever the environment offers: pandoc, a headless browser printing an HTML render of the Markdown, or a document tool. If nothing works, deliver the Markdown and say that the PDF could not be built.
 
 ## Self-audit before delivering
 

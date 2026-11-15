@@ -57,7 +57,7 @@ cp -r investment-banker-market-due-diligence-for-startups/skills/investment-bank
 npx skills add caesarschuetz/investment-banker-market-due-diligence-for-startups
 ```
 
-**Any model with web search.** Paste the contents of [`SKILL.md`](skills/investment-banker-market-due-diligence-for-startups/SKILL.md) as instructions, then describe the idea. The file is self-contained; the references, templates and PDF script are extras.
+**Any model with web search.** Paste the contents of [`SKILL.md`](skills/investment-banker-market-due-diligence-for-startups/SKILL.md) as instructions, then describe the idea. The file is self-contained for the analysis. For the typeset PDF it tells the model to fetch the script from this repository, and to say so.
 
 ## Use
 
