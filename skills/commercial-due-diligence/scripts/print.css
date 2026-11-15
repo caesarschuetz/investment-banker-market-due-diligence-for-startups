@@ -1,0 +1,157 @@
+/* Print stylesheet for the due diligence report.
+   Text in Source Serif 4, headings and tables in IBM Plex Sans (both SIL OFL, bundled in fonts/).
+   build_pdf.py inlines this file and the fonts into the HTML it prints. */
+
+:root {
+  --ink: #16181d;
+  --ink-soft: #3d424d;
+  --ink-quiet: #646a76;
+  --rule: #cfd3da;
+  --rule-strong: #16181d;
+  --wash: #f3f4f6;
+  --signal: #0e5a8a;
+  --go: #1f7a4d;
+  --wait: #b7791f;
+  --stop: #b3322a;
+}
+
+@page {
+  size: A4;
+  margin: 19mm 18mm 20mm 18mm;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  margin: 0;
+  font-family: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  font-size: 10pt;
+  line-height: 1.47;
+  color: var(--ink);
+  hyphens: manual;
+}
+
+/* Title block */
+h1 {
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 21pt;
+  line-height: 1.16;
+  letter-spacing: -0.012em;
+  margin: 0 0 3mm;
+}
+h1 + p {
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 9pt;
+  color: var(--ink-quiet);
+  margin: 0 0 5mm;
+  padding-bottom: 3.2mm;
+  border-bottom: 1.4pt solid var(--rule-strong);
+}
+/* The verdict heading sits close under the title block to keep page one for the verdict. */
+h1 + p + h2 { margin-top: 0; }
+
+/* Section headings */
+h2 {
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 13.5pt;
+  line-height: 1.2;
+  letter-spacing: -0.006em;
+  margin: 8.5mm 0 2.6mm;
+  break-after: avoid;
+}
+/* The verdict keeps page one to itself: the second section starts a new page. */
+h2:nth-of-type(2) { break-before: page; margin-top: 0; }
+
+h3 {
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 10.5pt;
+  margin: 5.5mm 0 1.8mm;
+  break-after: avoid;
+}
+
+p { margin: 0 0 2.6mm; orphans: 3; widows: 3; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+ul, ol { margin: 0 0 2.8mm; padding-left: 5.2mm; }
+li { margin: 0 0 1.1mm; }
+li > p { margin: 0; }
+
+a { color: var(--signal); text-decoration: none; overflow-wrap: anywhere; }
+
+code {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 8.6pt;
+  background: var(--wash);
+  padding: 0.2pt 2.4pt;
+  border-radius: 2px;
+}
+pre {
+  background: var(--wash);
+  padding: 3mm;
+  border-radius: 3px;
+  font-size: 8.4pt;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  break-inside: avoid;
+}
+pre code { background: none; padding: 0; }
+
+blockquote {
+  margin: 0 0 3mm;
+  padding: 0 0 0 4mm;
+  border-left: 1.2pt solid var(--rule);
+  color: var(--ink-soft);
+}
+
+hr { border: 0; border-top: 0.6pt solid var(--rule); margin: 6mm 0; }
+
+/* Tables: sans, compact, full width, no vertical rules */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5mm 0 4.5mm;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 8pt;
+  line-height: 1.36;
+}
+thead { display: table-header-group; }
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+  vertical-align: bottom;
+  padding: 1.4mm 2.2mm 1.4mm 0;
+  border-bottom: 1pt solid var(--rule-strong);
+}
+td {
+  vertical-align: top;
+  padding: 1.5mm 2.2mm 1.5mm 0;
+  border-bottom: 0.5pt solid var(--rule);
+  overflow-wrap: break-word;
+}
+th:last-child, td:last-child { padding-right: 0; }
+tr { break-inside: avoid; }
+
+/* Score chips, added by build_pdf.py to cells that hold only a score word */
+.score { white-space: nowrap; font-weight: 600; }
+.score::before {
+  content: "";
+  display: inline-block;
+  width: 2.1mm;
+  height: 2.1mm;
+  border-radius: 50%;
+  margin-right: 1.4mm;
+  vertical-align: 0.1mm;
+}
+.score-go::before { background: var(--go); }
+.score-wait::before { background: var(--wait); }
+.score-stop::before { background: var(--stop); }
+
+/* Footnotes and the source list read as reference matter */
+.footnote { font-size: 8.4pt; color: var(--ink-soft); }
