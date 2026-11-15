@@ -1,4 +1,4 @@
-# AI-native wealth advice for mass-affluent US households: commercial due diligence
+# AI-native wealth advice for mass-affluent US households: market due diligence
 
 United States, mass-affluent households · as of 15 November 2026 · full analysis, public sources only
 

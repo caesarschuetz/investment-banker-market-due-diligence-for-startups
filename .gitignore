@@ -3,4 +3,4 @@ __pycache__/
 *.print.html
 .DS_Store
 node_modules/
-cdd-*/
+dd-*/

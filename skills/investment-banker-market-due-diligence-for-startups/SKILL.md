@@ -1,6 +1,6 @@
 ---
-name: commercial-due-diligence
-description: "Commercial due diligence for a startup idea: sourced market size, players, comps, deals, exit math, gap check and a verdict. Use for any market research, competitor analysis or idea validation."
+name: investment-banker-market-due-diligence-for-startups
+description: "Investment banker market due diligence for a startup idea: sourced market size, players, comps, deals, exit math, gap check, verdict. Use for market research, competitor analysis or idea validation."
 license: MIT
 compatibility: Needs web search and page-fetch tools. PDF export uses the bundled script (Python 3 with the markdown package, plus Playwright/Chromium, wkhtmltopdf or pandoc). Without them the report is delivered as Markdown.
 metadata:
@@ -8,15 +8,15 @@ metadata:
   version: "1.0.0"
 ---
 
-# Commercial due diligence for startup ideas
+# Investment banker market due diligence for startups
 
-Turn a startup idea into the analysis an investor would commission before writing a check: how big the market is, who already serves it and how well, what comparable companies are worth, what the deals in the sector say, whether the claimed gap is real, and what would have to be true for the idea to become a billion-dollar company. The output is a sourced paper with the verdict on page one.
+Put a startup idea through the market due diligence an investment banker would run on a deal: how big the market is, who already serves it and how well, what comparable companies are worth, what the deals in the sector say, whether the claimed gap is real, and what would have to be true for the idea to become a billion-dollar company. The output is a sourced paper with the verdict on page one.
 
-The job is to find out whether the idea holds. Look as hard for reasons it fails as for reasons it works. A report that only confirms the founder's hopes is worth nothing to them, and they can usually tell.
+Use the banker's toolkit with the investor's scepticism. The job is to find out whether the idea holds. Look as hard for reasons it fails as for reasons it works. A report that only confirms the founder's hopes is worth nothing to them, and they can usually tell.
 
 ## What you deliver
 
-A folder `cdd-<idea-slug>/` in the working directory:
+A folder `dd-<idea-slug>/` in the working directory:
 
 - `report.md`: the paper, in the user's language, following "Report structure" below
 - `evidence.csv`: one row per fact used, with source, date and read status
@@ -183,7 +183,7 @@ How to use it:
 Use these sections in this order. If `templates/report.md` is available, start from it.
 
 ```markdown
-# <Idea in one line>: commercial due diligence
+# <Idea in one line>: market due diligence
 <Country and segment> · as of <date> · <full analysis | quick scan>
 
 ## 1. Verdict
@@ -225,7 +225,7 @@ Writing rules:
 If `scripts/build_pdf.py` is available next to this file, run:
 
 ```bash
-python <skill-folder>/scripts/build_pdf.py cdd-<idea-slug>/report.md
+python <skill-folder>/scripts/build_pdf.py dd-<idea-slug>/report.md
 ```
 
 It writes `report.pdf` beside the Markdown file and tries Playwright with Chromium, a system Chrome or Chromium, wkhtmltopdf and pandoc in that order. Open the PDF or render a page to check that tables fit the page width before you deliver it.

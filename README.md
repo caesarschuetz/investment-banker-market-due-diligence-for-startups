@@ -1,6 +1,6 @@
-# Commercial due diligence for startup ideas
+# Investment Banker Market Due Diligence for Startups
 
-An agent skill that turns a startup idea into a sourced market analysis with a verdict.
+An agent skill that puts a startup idea through the market due diligence an investment banker would run, and returns a sourced paper with a verdict.
 
 You give it an idea. It returns a paper, in Markdown and PDF, that covers market size, business models, 12 to 20 player profiles, comps, precedent transactions, the graveyard, demand evidence, a gap check, exit math and a scorecard, with every number traceable to a source.
 
@@ -10,7 +10,7 @@ You give it an idea. It returns a paper, in Markdown and PDF, that covers market
 
 Ask a model for market research and you usually get a list of competitors, a market-size figure with no source, and an encouraging conclusion. That is no use for deciding whether to spend two years on something.
 
-This skill makes the model work the way a commercial due diligence is done for an investor, and adds the three blocks an investment banker would look for: comps, precedent transactions and exit math. Four rules do most of the work:
+This skill makes the model work like a banker's analyst preparing a deal. It runs what consultants call a commercial due diligence on the market (size, money flow, players, demand, gaps) and adds the three blocks from a banker's valuation work: comps, precedent transactions and exit math. One thing is deliberately different: a banker writes to sell the deal, and this report is written for the person who would lose the money. Four rules do most of the work:
 
 1. **Every number carries a source, a date and a read status.** The evidence log records whether the page was opened, partly read, only seen as a search snippet, or whether the figure is the model's own calculation.
 2. **A gap is a claim to disprove.** "Nobody does this" counts only after searches designed to find an occupant have failed, and after the neighbours, the incumbents and the graveyard have been checked.
@@ -41,35 +41,35 @@ The method comes from a real run in November 2026: a founder's idea for AI-nativ
 
 ## Install
 
-**Claude (web, desktop, mobile).** Download [`commercial-due-diligence.zip`](https://github.com/caesarschuetz/commercial-due-diligence/raw/main/dist/commercial-due-diligence.zip) and add it under Customize → Skills. Code execution has to be enabled. Anthropic's guide: [How to create custom skills](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills).
+**Claude (web, desktop, mobile).** Download [`investment-banker-market-due-diligence-for-startups.zip`](https://github.com/caesarschuetz/investment-banker-market-due-diligence-for-startups/raw/main/dist/investment-banker-market-due-diligence-for-startups.zip) and add it under Customize → Skills. Code execution has to be enabled. Anthropic's guide: [How to create custom skills](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills).
 
 **Claude Code.**
 
 ```bash
-git clone https://github.com/caesarschuetz/commercial-due-diligence.git
+git clone https://github.com/caesarschuetz/investment-banker-market-due-diligence-for-startups.git
 mkdir -p ~/.claude/skills
-cp -r commercial-due-diligence/skills/commercial-due-diligence ~/.claude/skills/
+cp -r investment-banker-market-due-diligence-for-startups/skills/investment-banker-market-due-diligence-for-startups ~/.claude/skills/
 ```
 
 **Other agents.** With the [skills CLI](https://skills.sh) (Node.js 22.20 or later):
 
 ```bash
-npx skills add caesarschuetz/commercial-due-diligence
+npx skills add caesarschuetz/investment-banker-market-due-diligence-for-startups
 ```
 
-**Any model with web search.** Paste the contents of [`SKILL.md`](skills/commercial-due-diligence/SKILL.md) as instructions, then describe the idea. The file is self-contained; the references, templates and PDF script are extras.
+**Any model with web search.** Paste the contents of [`SKILL.md`](skills/investment-banker-market-due-diligence-for-startups/SKILL.md) as instructions, then describe the idea. The file is self-contained; the references, templates and PDF script are extras.
 
 ## Use
 
 Describe the idea and the market. For example:
 
 ```text
-Run a commercial due diligence on this idea: an AI-native surety bond
-provider for small contractors in the US, sold through bond agents.
+Run an investment banker market due diligence on this idea: an AI-native
+surety bond provider for small contractors in the US, sold through bond agents.
 ```
 
 ```text
-/commercial-due-diligence Subscription meal kits for dialysis patients in Germany
+/investment-banker-market-due-diligence-for-startups Subscription meal kits for dialysis patients in Germany
 ```
 
 ```text
@@ -80,7 +80,7 @@ in the UK buy generics together. Quick scan first.
 The skill asks at most three questions (country, customer, how the company earns money), then works through thirteen steps and delivers a folder:
 
 ```text
-cdd-<idea>/
+dd-<idea>/
   report.md       the paper
   evidence.csv    every fact with source, date and read status
   report.pdf      the paper, typeset
@@ -96,7 +96,7 @@ A full run opens forty or more sources and takes a while. Ask for a "quick scan"
 To build a PDF by hand:
 
 ```bash
-python skills/commercial-due-diligence/scripts/build_pdf.py cdd-my-idea/report.md
+python skills/investment-banker-market-due-diligence-for-startups/scripts/build_pdf.py dd-my-idea/report.md
 ```
 
 ## Limits
@@ -104,12 +104,13 @@ python skills/commercial-due-diligence/scripts/build_pdf.py cdd-my-idea/report.m
 - The report is only as good as the public sources. Private companies disclose little, and the report says "n/d" where they do.
 - A model can still misread a page. The evidence log exists so that you can check the facts that matter to you.
 - A "no-go" is a statement about the idea as framed, in that market, on that date. Markets move.
+- "Investment banker" describes the method: comps, precedent transactions and exit math on top of a market due diligence. No bank wrote or reviewed this skill.
 - This is research support. It is not investment, legal or tax advice.
 
 ## Repository layout
 
 ```text
-skills/commercial-due-diligence/
+skills/investment-banker-market-due-diligence-for-startups/
   SKILL.md                    the workflow and the rules
   references/
     evidence-rules.md         sourcing, dating, read status, corrections
@@ -125,17 +126,17 @@ skills/commercial-due-diligence/
 examples/
   ai-native-wealth-advice-us/ a complete public example
 dist/
-  commercial-due-diligence.zip  the skill folder, ready to upload
+  investment-banker-market-due-diligence-for-startups.zip  the skill folder, ready to upload
 ```
 
 After changing the skill, rebuild the upload file:
 
 ```bash
-cd skills && zip -r ../dist/commercial-due-diligence.zip commercial-due-diligence -x "*/__pycache__/*" "*.DS_Store"
+cd skills && zip -r ../dist/investment-banker-market-due-diligence-for-startups.zip investment-banker-market-due-diligence-for-startups -x "*/__pycache__/*" "*.DS_Store"
 ```
 
 ## License
 
-MIT for the skill, see [LICENSE](LICENSE). The bundled fonts are under the SIL Open Font License 1.1; their license texts are in `skills/commercial-due-diligence/scripts/fonts/`.
+MIT for the skill, see [LICENSE](LICENSE). The bundled fonts are under the SIL Open Font License 1.1; their license texts are in `skills/investment-banker-market-due-diligence-for-startups/scripts/fonts/`.
 
 Made by [Caesar Schütz](https://github.com/caesarschuetz).

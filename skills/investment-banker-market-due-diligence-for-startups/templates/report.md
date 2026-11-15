@@ -1,4 +1,4 @@
-# <Idea in one line>: commercial due diligence
+# <Idea in one line>: market due diligence
 
 <Country and segment> · as of <date> · <full analysis | quick scan>
 
